@@ -1,6 +1,8 @@
 import React from 'react';
 import Controls from './Controls';
 import Statistics from './Statistics';
+import s from './style.module.css';
+
 class Feedback extends React.Component {
   state = {
     good: 0,
@@ -35,35 +37,40 @@ class Feedback extends React.Component {
     });
   };
 
-  countTotalFeedback = () => {
+  TotalFeedback = () => {
     return this.state.good + this.state.neutral + this.state.bad;
   };
 
-  countPositiveFeedbackPercentage = () => {
-    let countTotalFeedback = Math.ceil(
-      (this.state.good / this.countTotalFeedback()) * 100
+  PositiveFeedbackPercentage = () => {
+    let TotalFeedback = Math.ceil(
+      (this.state.good / this.TotalFeedback()) * 100
     );
 
-    return isNaN(countTotalFeedback) ? 0 : countTotalFeedback;
+    return isNaN(TotalFeedback) ? 0 : TotalFeedback;
   };
 
   render() {
     return (
-      <section className="Feedback__section">
-        <p>Please leave feedback</p>
+      <section className={s.Feedback__section}>
+        <p className={s.Feedback__title}>Please leave feedback</p>
         <Controls
           onGood={this.goodFeedback}
           onNeutral={this.neutralFeedback}
           onBad={this.badFeedback}
         />
-        <p>Statistics</p>
-        <Statistics
-          goodFeedback={this.state.good}
-          neutralFeedback={this.state.neutral}
-          badFeedback={this.state.bad}
-          countTotalFeedback={this.countTotalFeedback()}
-          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage()}
-        />
+
+        <p className={s.Feedback__title}>Statistics:</p>
+        {this.TotalFeedback() > 0 ? (
+          <Statistics
+            goodFeedback={this.state.good}
+            neutralFeedback={this.state.neutral}
+            badFeedback={this.state.bad}
+            TotalFeedback={this.TotalFeedback()}
+            PositiveFeedbackPercentage={this.PositiveFeedbackPercentage()}
+          />
+        ) : (
+          <p>Leave feedback to view statistics</p>
+        )}
       </section>
     );
   }

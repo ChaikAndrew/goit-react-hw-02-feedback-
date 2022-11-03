@@ -1,12 +1,14 @@
+import s from './style.module.css';
+
 const Controls = ({ onGood, onNeutral, onBad }) => (
-  <div className="Feedback__controls">
-    <button type="button" onClick={onGood}>
+  <div className={s.Feedback__controls}>
+    <button className={s.Feedback__btn} type="button" onClick={onGood}>
       Good
     </button>
-    <button type="button" onClick={onNeutral}>
+    <button className={s.Feedback__btn} type="button" onClick={onNeutral}>
       Neutral
     </button>
-    <button type="button" onClick={onBad}>
+    <button className={s.Feedback__btn} type="button" onClick={onBad}>
       Bad
     </button>
   </div>

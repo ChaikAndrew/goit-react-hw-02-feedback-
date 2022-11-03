@@ -1,0 +1,32 @@
+.Feedback__section {
+  padding: 40px;
+  text-align: center;
+}
+
+.Feedback__title {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.Feedback__controls {
+  margin-bottom: 15px;
+}
+
+.Feedback__btn {
+  width: 80px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  transition: all ease-in-out 200ms;
+}
+
+.Feedback__btn:hover,
+.Feedback__btn:focus {
+  color: green;
+}
+
+.Feedback__btn:not(:last-child) {
+  margin-right: 15px;
+}
